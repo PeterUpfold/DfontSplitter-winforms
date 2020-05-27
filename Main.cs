@@ -227,7 +227,30 @@ Do you want to overwrite any original files?", "Overwrite Originals", MessageBox
                 // copy results to destination folder
                 foreach(string file in Directory.GetFiles(Directory.GetCurrentDirectory()))
                 {
-                    File.Copy(file, Path.Combine(destinationFolderText.Text, Path.GetFileName(file)), true);
+                    string normalisedFilePath = "";
+                    int exitCode = -1;
+                    // normalise all TTFs
+                    if (file.EndsWith(".ttf"))
+                    {
+                        
+                        try
+                        {
+                            exitCode = FontForgeWrapper.NormaliseTTF(Path.GetFileName(file), Directory.GetCurrentDirectory(), out normalisedFilePath);
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine(ex.ToString());
+                            //TODO handle this 
+                        }
+                    }
+
+                    string pathToUse = file;
+                    if (normalisedFilePath.Length > 0 && exitCode == 0)
+                    {
+                        pathToUse = normalisedFilePath;
+                    }
+
+                    File.Copy(pathToUse, Path.Combine(destinationFolderText.Text, Path.GetFileName(file)), true);
                 }
                
 
@@ -246,73 +269,18 @@ Do you want to overwrite any original files?", "Overwrite Originals", MessageBox
         private void fonduWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
 
-            /* Very strangely, it seems that some of the 'invalid font file' errors
-             * can be fixed simply by copying the files after fondu is done with them.
-             * 
-             * Really odd, since the files have not changed one bit (literally).
-             * 
-             * So, we make a copy, delete the original, and rename our copy to have the original
-             * file name. For some fonts, this makes Windows see the font file as valid.
-             * 
-             * Seems to work more reliably on NT 6.x than 5.x. Still only with some fonts.
-             */
-            DirectoryInfo dirHandle = new DirectoryInfo(destinationFolderText.Text);
-
-            FileInfo[] fileList = dirHandle.GetFiles();
-
-            foreach (FileInfo file in fileList)
-            {
-
-                if (file.Extension == ".ttf")
-                {
-
-                    // copy the file to itself, delete the original, rename the copy to the original filename
-                    try
-                    {
-                        File.Copy(file.FullName, file.FullName + @"_dfs_039583FE-C790-4285-B073-9BA428042A60.ttf");
-                        File.Delete(file.FullName);
-                    }
-                    catch (Exception copyE)
-                    {
-                        Console.WriteLine(@"Unable to post-copy the file " + file.FullName);
-                    }
-
-                }
-            }
-
-            DirectoryInfo rnDirHandle = new DirectoryInfo(destinationFolderText.Text);
-
-            FileInfo[] rnFileList = rnDirHandle.GetFiles();
-            foreach (FileInfo file in rnFileList)
-            {
-
-                if (file.Extension == ".ttf")
-                {
-                    try
-                    {
-                        string pattern = @"_dfs_039583FE-C790-4285-B073-9BA428042A60.ttf";
-                        System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex(pattern);
-                        string newName = rgx.Replace(file.FullName, String.Empty);
-                        File.Move(file.FullName, newName);
-                    }
-                    catch (Exception renameE)
-                    {
-                        Console.WriteLine(@"Unable to post-rename the copied file " + file.FullName);
-                    }
-                }
-            }
-
             // put the UI back how we found it
             progress.Visible = false;
             convertButton.Enabled = true;
             convertButton.Text = "Convert";
 
-            
+
             // all tied up, so throw Explorer if desired
 
 
-            if (shouldSpawnExplorer == true)
+            if (shouldSpawnExplorer == true) { 
                 Process.Start(destinationFolderText.Text); // spawn Explorer window
+            }
 
             // do other stuff when done
         }

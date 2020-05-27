@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FonduWrapper.cs" />
+    <Compile Include="FontForgeWrapper.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +126,8 @@
     <None Include="Resources\dfontsplitter.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BuildTools\" />
+    <Folder Include="ExternalTools\fontforge\" />
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
