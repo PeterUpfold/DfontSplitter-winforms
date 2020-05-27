@@ -7,7 +7,7 @@ namespace DfontSplitter
 {
     class FonduWrapper
     {
-        [DllImport("fondu-win-dll.dll")]
+        [DllImport("fondu-win-dll.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern int fondu_simple_main(string filename);
     }
 }

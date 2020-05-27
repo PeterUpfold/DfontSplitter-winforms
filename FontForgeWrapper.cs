@@ -26,7 +26,7 @@ namespace DfontSplitter
         /// <returns>The exit code of fontforge.exe</returns>
         public static int NormaliseTTF(string filename, string containingTempFolder, out string normalisedFilePath)
         {
-            string fontForgePath = Path.Combine(Assembly.GetExecutingAssembly().Location, "ExternalTools", "fontforge", "bin", "fontforge.exe");
+            string fontForgePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ExternalTools", "fontforge", "bin", "fontforge.exe");
 
             if (!File.Exists(fontForgePath))
             {

@@ -8,13 +8,19 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AC5F8564-F796-4986-80A6-A53E7EEFF5F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC5F8564-F796-4986-80A6-A53E7EEFF5F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC5F8564-F796-4986-80A6-A53E7EEFF5F6}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{AC5F8564-F796-4986-80A6-A53E7EEFF5F6}.Debug|Any CPU.Build.0 = Debug|x86
+		{AC5F8564-F796-4986-80A6-A53E7EEFF5F6}.Debug|x86.ActiveCfg = Debug|x86
+		{AC5F8564-F796-4986-80A6-A53E7EEFF5F6}.Debug|x86.Build.0 = Debug|x86
 		{AC5F8564-F796-4986-80A6-A53E7EEFF5F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC5F8564-F796-4986-80A6-A53E7EEFF5F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC5F8564-F796-4986-80A6-A53E7EEFF5F6}.Release|x86.ActiveCfg = Release|x86
+		{AC5F8564-F796-4986-80A6-A53E7EEFF5F6}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

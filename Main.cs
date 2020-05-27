@@ -258,9 +258,10 @@ Do you want to overwrite any original files?", "Overwrite Originals", MessageBox
 
                 foreach(string file in Directory.GetFiles(thisFileTempPath))
                 {
-                    File.Delete(file);
+                    //TODO still holding a handle open??
+                    //File.Delete(file);
                 }
-                Directory.Delete(thisFileTempPath);
+                //Directory.Delete(thisFileTempPath);
             }
 
             
