@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
     <value>                    GNU GENERAL PUBLIC LICENSE
@@ -792,5 +792,18 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 &lt;http://www.gnu.org/philosophy/why-not-lgpl.html&gt;.</value>
+  </data>
+  <data name="Label6.Text" xml:space="preserve">
+    <value>The DfontSplitter icon is licensed
+under the GNU Free Documentation
+License, Version 1.2 or any later version
+published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts,
+and no Back-Cover Texts.
+
+The icon includes a modified version of
+“Chisel wood 24mm” by Isabelle Grosjean
+which is also licensed as such.
+</value>
   </data>
 </root>

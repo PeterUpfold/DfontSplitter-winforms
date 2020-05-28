@@ -8,14 +8,14 @@
     <Setting Name="lastUpdateCheck" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)">2011-03-01</Value>
     </Setting>
-    <Setting Name="updateCheckFrequency" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">3</Value>
-    </Setting>
     <Setting Name="hasAskedPermissionForUpdateCheck" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="shouldSpawnExplorer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="updateCheckFrequency" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

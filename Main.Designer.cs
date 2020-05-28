@@ -119,7 +119,7 @@
             this.lblProgDescription.Size = new System.Drawing.Size(555, 20);
             this.lblProgDescription.TabIndex = 1;
             this.lblProgDescription.Text = "DfontSplitter allows you to convert a Mac OS X .dfont font file into a TrueType (" +
-                ".ttf) font file.";
+    ".ttf) font file.";
             this.lblProgDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // destGroup

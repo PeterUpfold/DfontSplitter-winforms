@@ -218,6 +218,7 @@ Do you want to overwrite any original files?", "Overwrite Originals", MessageBox
 
             foreach (string filename in sourceList.Items)
             {
+                Program.Log.Info($"Beginning processing of {filename} ({sourceList.Items.Count} total files)");
                 string thisFileTempPath = Path.Combine(tempPath, Path.GetFileNameWithoutExtension(filename));
                 Directory.CreateDirectory(thisFileTempPath);
                 Directory.SetCurrentDirectory(thisFileTempPath);
@@ -268,11 +269,8 @@ Do you want to overwrite any original files?", "Overwrite Originals", MessageBox
                 Directory.SetCurrentDirectory(Path.GetTempPath());
 
                 Program.Log.Debug($"Cleanup {thisFileTempPath}");
-                foreach(string file in Directory.GetFiles(thisFileTempPath))
-                {
-                    File.Delete(file);
-                }
-                Directory.Delete(thisFileTempPath);
+                Directory.Delete(thisFileTempPath, true);
+                Program.Log.Info($"Completed processing of {filename} ({sourceList.Items.Count} total files)");
             }
             
             Directory.SetCurrentDirectory(Path.GetTempPath());

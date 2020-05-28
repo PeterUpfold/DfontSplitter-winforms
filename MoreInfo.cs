@@ -40,8 +40,14 @@ namespace DfontSplitter
             this.Dispose();
         }
 
+        private void getSource_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/PeterUpfold/dfontsplitter-winforms");
+        }
 
-
-
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -34,22 +34,23 @@
             this.Label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.gbxIcon = new System.Windows.Forms.GroupBox();
-            this.llbOxygen = new System.Windows.Forms.LinkLabel();
             this.Label6 = new System.Windows.Forms.Label();
-            this.gbxCygwin = new System.Windows.Forms.GroupBox();
-            this.GroupBox1 = new System.Windows.Forms.GroupBox();
-            this.LinkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.Label5 = new System.Windows.Forms.Label();
             this.gbxFondu = new System.Windows.Forms.GroupBox();
             this.Label1 = new System.Windows.Forms.Label();
             this.Label2 = new System.Windows.Forms.Label();
             this.LinkLabel1 = new System.Windows.Forms.LinkLabel();
             this.imageWell = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.gbxFontforge = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.fontforgeBuild = new System.Windows.Forms.Label();
+            this.closeButton = new System.Windows.Forms.Button();
+            this.getSource = new System.Windows.Forms.Button();
             this.gbxIcon.SuspendLayout();
-            this.gbxCygwin.SuspendLayout();
             this.gbxFondu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageWell)).BeginInit();
+            this.gbxFontforge.SuspendLayout();
             this.SuspendLayout();
             // 
             // dfontsplitterWebsite
@@ -57,10 +58,10 @@
             this.dfontsplitterWebsite.AutoSize = true;
             this.dfontsplitterWebsite.Location = new System.Drawing.Point(200, 8);
             this.dfontsplitterWebsite.Name = "dfontsplitterWebsite";
-            this.dfontsplitterWebsite.Size = new System.Drawing.Size(228, 13);
+            this.dfontsplitterWebsite.Size = new System.Drawing.Size(233, 13);
             this.dfontsplitterWebsite.TabIndex = 7;
             this.dfontsplitterWebsite.TabStop = true;
-            this.dfontsplitterWebsite.Text = "http://peter.upfold.org.uk/projects/dfontsplitter";
+            this.dfontsplitterWebsite.Text = "https://peter.upfold.org.uk/projects/dfontsplitter";
             // 
             // Label3
             // 
@@ -93,85 +94,31 @@
             // 
             // gbxIcon
             // 
-            this.gbxIcon.Controls.Add(this.llbOxygen);
             this.gbxIcon.Controls.Add(this.Label6);
-            this.gbxIcon.Location = new System.Drawing.Point(340, 263);
+            this.gbxIcon.Location = new System.Drawing.Point(362, 246);
             this.gbxIcon.Name = "gbxIcon";
-            this.gbxIcon.Size = new System.Drawing.Size(190, 98);
+            this.gbxIcon.Size = new System.Drawing.Size(251, 158);
             this.gbxIcon.TabIndex = 14;
             this.gbxIcon.TabStop = false;
-            this.gbxIcon.Text = "Oxygen";
-            // 
-            // llbOxygen
-            // 
-            this.llbOxygen.AutoSize = true;
-            this.llbOxygen.Location = new System.Drawing.Point(20, 60);
-            this.llbOxygen.Name = "llbOxygen";
-            this.llbOxygen.Size = new System.Drawing.Size(123, 13);
-            this.llbOxygen.TabIndex = 1;
-            this.llbOxygen.TabStop = true;
-            this.llbOxygen.Text = "http://oxygen-icons.org/";
+            this.gbxIcon.Text = "Icon";
             // 
             // Label6
             // 
             this.Label6.AutoSize = true;
-            this.Label6.Location = new System.Drawing.Point(5, 15);
+            this.Label6.Location = new System.Drawing.Point(9, 15);
             this.Label6.Name = "Label6";
-            this.Label6.Size = new System.Drawing.Size(168, 39);
+            this.Label6.Size = new System.Drawing.Size(237, 130);
             this.Label6.TabIndex = 0;
-            this.Label6.Text = "Icon from Oxygen icon theme,\r\nreleased under Creative Commons\r\nAttribution-NonCom" +
-                "mercial 2.5.";
-            // 
-            // gbxCygwin
-            // 
-            this.gbxCygwin.Controls.Add(this.GroupBox1);
-            this.gbxCygwin.Controls.Add(this.LinkLabel4);
-            this.gbxCygwin.Controls.Add(this.Label5);
-            this.gbxCygwin.Location = new System.Drawing.Point(49, 377);
-            this.gbxCygwin.Name = "gbxCygwin";
-            this.gbxCygwin.Size = new System.Drawing.Size(464, 77);
-            this.gbxCygwin.TabIndex = 13;
-            this.gbxCygwin.TabStop = false;
-            this.gbxCygwin.Text = "Cygwin1.dll";
-            // 
-            // GroupBox1
-            // 
-            this.GroupBox1.Location = new System.Drawing.Point(111, 82);
-            this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(171, 87);
-            this.GroupBox1.TabIndex = 10;
-            this.GroupBox1.TabStop = false;
-            this.GroupBox1.Text = "GroupBox1";
-            // 
-            // LinkLabel4
-            // 
-            this.LinkLabel4.AutoSize = true;
-            this.LinkLabel4.Location = new System.Drawing.Point(13, 49);
-            this.LinkLabel4.Name = "LinkLabel4";
-            this.LinkLabel4.Size = new System.Drawing.Size(407, 13);
-            this.LinkLabel4.TabIndex = 1;
-            this.LinkLabel4.TabStop = true;
-            this.LinkLabel4.Text = "http://peter.upfold.org.uk/files/dfontsplitter/win/0.1/src/cygwin-1.5.25-15-src.t" +
-                "ar.bz2";
-            // 
-            // Label5
-            // 
-            this.Label5.AutoSize = true;
-            this.Label5.Location = new System.Drawing.Point(6, 16);
-            this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(435, 26);
-            this.Label5.TabIndex = 0;
-            this.Label5.Text = "This package also includes a binary of cygwin1.dll, licensed under the GPL2.0. Th" +
-                "e source\r\nfor this binary can be downloaded from:";
+            this.Label6.Text = resources.GetString("Label6.Text");
             // 
             // gbxFondu
             // 
             this.gbxFondu.Controls.Add(this.Label1);
             this.gbxFondu.Controls.Add(this.Label2);
             this.gbxFondu.Controls.Add(this.LinkLabel1);
-            this.gbxFondu.Location = new System.Drawing.Point(13, 263);
+            this.gbxFondu.Location = new System.Drawing.Point(12, 261);
             this.gbxFondu.Name = "gbxFondu";
-            this.gbxFondu.Size = new System.Drawing.Size(311, 98);
+            this.gbxFondu.Size = new System.Drawing.Size(330, 98);
             this.gbxFondu.TabIndex = 11;
             this.gbxFondu.TabStop = false;
             this.gbxFondu.Text = "Fondu";
@@ -181,10 +128,10 @@
             this.Label1.AutoSize = true;
             this.Label1.Location = new System.Drawing.Point(5, 15);
             this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(278, 26);
+            this.Label1.Size = new System.Drawing.Size(325, 26);
             this.Label1.TabIndex = 0;
-            this.Label1.Text = "DfontSplitter is a GUI wrapper around the Unix tool fondu.\r\nMore information on f" +
-                "ondu is available at:";
+            this.Label1.Text = "DfontSplitter is a GUI wrapper around the tools fondu and fontforge.\r\nMore inform" +
+    "ation on fondu is available at:";
             // 
             // Label2
             // 
@@ -209,7 +156,7 @@
             // imageWell
             // 
             this.imageWell.Image = global::DfontSplitter.Properties.Resources.dfontsplitter_128;
-            this.imageWell.Location = new System.Drawing.Point(414, 40);
+            this.imageWell.Location = new System.Drawing.Point(463, 30);
             this.imageWell.Name = "imageWell";
             this.imageWell.Size = new System.Drawing.Size(128, 128);
             this.imageWell.TabIndex = 15;
@@ -219,21 +166,86 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(382, 190);
+            this.label7.Location = new System.Drawing.Point(442, 171);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(160, 13);
+            this.label7.Size = new System.Drawing.Size(149, 13);
             this.label7.TabIndex = 16;
-            this.label7.Text = "Version: 0.3.1 for Windows";
+            this.label7.Text = "Version: 0.4 for Windows";
+            // 
+            // gbxFontforge
+            // 
+            this.gbxFontforge.Controls.Add(this.fontforgeBuild);
+            this.gbxFontforge.Controls.Add(this.linkLabel2);
+            this.gbxFontforge.Controls.Add(this.label5);
+            this.gbxFontforge.Location = new System.Drawing.Point(13, 365);
+            this.gbxFontforge.Name = "gbxFontforge";
+            this.gbxFontforge.Size = new System.Drawing.Size(339, 154);
+            this.gbxFontforge.TabIndex = 17;
+            this.gbxFontforge.TabStop = false;
+            this.gbxFontforge.Text = "FontForge";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(328, 39);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "DfontSplitter uses FontForge to produce Windows-compatible\r\nTTF files. The FontFo" +
+    "rge distribution is licensed under the GNU GPL\r\nv3 as above.";
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(6, 65);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(238, 13);
+            this.linkLabel2.TabIndex = 4;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "https://sourceforge.net/projects/fontforgebuilds/";
+            // 
+            // fontforgeBuild
+            // 
+            this.fontforgeBuild.AutoSize = true;
+            this.fontforgeBuild.Location = new System.Drawing.Point(6, 99);
+            this.fontforgeBuild.Name = "fontforgeBuild";
+            this.fontforgeBuild.Size = new System.Drawing.Size(323, 52);
+            this.fontforgeBuild.TabIndex = 5;
+            this.fontforgeBuild.Text = "FontForge Windows build (32-bit)\r\nMon, Apr  6, 2020 11:04:29 AM +0000\r\ne5275eb60f" +
+    "a1c2de76157cf8c0ccc89909f4ce69 [HEAD]\r\nBased on master: 1cd85a0e621352f81aca07bf" +
+    "9eb42467ee078f38\r\n";
+            // 
+            // closeButton
+            // 
+            this.closeButton.Location = new System.Drawing.Point(538, 504);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 18;
+            this.closeButton.Text = "Close";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
+            // getSource
+            // 
+            this.getSource.Location = new System.Drawing.Point(513, 410);
+            this.getSource.Name = "getSource";
+            this.getSource.Size = new System.Drawing.Size(100, 23);
+            this.getSource.TabIndex = 19;
+            this.getSource.Text = "Get Source Code";
+            this.getSource.UseVisualStyleBackColor = true;
+            this.getSource.Click += new System.EventHandler(this.getSource_Click);
             // 
             // MoreInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 492);
+            this.ClientSize = new System.Drawing.Size(625, 539);
+            this.Controls.Add(this.getSource);
+            this.Controls.Add(this.closeButton);
+            this.Controls.Add(this.gbxFontforge);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.imageWell);
             this.Controls.Add(this.gbxIcon);
-            this.Controls.Add(this.gbxCygwin);
             this.Controls.Add(this.gbxFondu);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Label4);
@@ -248,11 +260,11 @@
             this.Text = "More Info";
             this.gbxIcon.ResumeLayout(false);
             this.gbxIcon.PerformLayout();
-            this.gbxCygwin.ResumeLayout(false);
-            this.gbxCygwin.PerformLayout();
             this.gbxFondu.ResumeLayout(false);
             this.gbxFondu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageWell)).EndInit();
+            this.gbxFontforge.ResumeLayout(false);
+            this.gbxFontforge.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,18 +277,18 @@
         internal System.Windows.Forms.Label Label4;
         private System.Windows.Forms.TextBox textBox1;
         internal System.Windows.Forms.GroupBox gbxIcon;
-        internal System.Windows.Forms.LinkLabel llbOxygen;
         internal System.Windows.Forms.Label Label6;
-        internal System.Windows.Forms.GroupBox gbxCygwin;
-        internal System.Windows.Forms.GroupBox GroupBox1;
-        internal System.Windows.Forms.LinkLabel LinkLabel4;
-        internal System.Windows.Forms.Label Label5;
         internal System.Windows.Forms.GroupBox gbxFondu;
         internal System.Windows.Forms.Label Label1;
         internal System.Windows.Forms.Label Label2;
         internal System.Windows.Forms.LinkLabel LinkLabel1;
         private System.Windows.Forms.PictureBox imageWell;
         private System.Windows.Forms.Label label7;
-
+        private System.Windows.Forms.GroupBox gbxFontforge;
+        private System.Windows.Forms.Label fontforgeBuild;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        internal System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button closeButton;
+        private System.Windows.Forms.Button getSource;
     }
 }
