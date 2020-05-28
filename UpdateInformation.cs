@@ -67,12 +67,12 @@ namespace DfontSplitter
             if (continueAutoUpdating.Checked)
             {
                 sets.shouldCheckForUpdates = true;
-                remindButton.Text = @"Remind Me &Later";
+                remindButton.Text = "Remind Me &Later";
             }
             else
             {
                 sets.shouldCheckForUpdates = false;
-                remindButton.Text = @"Ignore Update";
+                remindButton.Text = "Ignore Update";
             }
         }
 

@@ -46,7 +46,9 @@ namespace DfontSplitter
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = fontForgePath,
-                    Arguments = $"-c \"open(argv[1]).generate(argv[2])\" \"{inputFilename}\" \"{outputFilename}\""
+                    Arguments = $"-c \"open(argv[1]).generate(argv[2])\" \"{inputFilename}\" \"{outputFilename}\"",
+                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Hidden
                 }
             };
             ffProcess.Start();

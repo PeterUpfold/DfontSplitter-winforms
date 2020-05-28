@@ -25,6 +25,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 
 namespace DfontSplitter
 {
@@ -118,16 +119,8 @@ namespace DfontSplitter
 
         private void Main_Load(object sender, EventArgs e)
         {
-//            if (!fileExists(System.AppDomain.CurrentDomain.BaseDirectory + "fondu.exe") || !fileExists(System.AppDomain.CurrentDomain.BaseDirectory + "cygwin1.dll"))
-//            {
-//                MessageBox.Show(@"The required files fondu.exe and cygwin1.dll were not found.
-//These files must be in the same folder as DfontSplitter.exe.
-//Please try reinstalling the program.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-//                Application.Exit();
-//            }
-
+            Program.Log.Info($"Started {Assembly.GetExecutingAssembly().FullName}");
             updateCheckWorker.RunWorkerAsync();
-
         }
 
 
@@ -153,6 +146,7 @@ namespace DfontSplitter
             // we must have >0 items in list box of source
             if (sourceList.Items.Count <= 0)
             {
+                Program.Log.Warn("Source list item count was zero -- no source files to convert.");
                 MessageBox.Show(@"You must choose at least one source file to convert.
 
 Use the 'Add Files' button to choose one or more .dfont files and try again.", "No Source Files", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -162,6 +156,7 @@ Use the 'Add Files' button to choose one or more .dfont files and try again.", "
             // we must have a destination folder set
             if (destinationFolderText.Text.Length <= 0)
             {
+                Program.Log.Warn("No destination folder selected.");
                 MessageBox.Show(@"You must choose a destination folder.
 
 Use the 'Browse' button to choose a location to save the files and try again.", "No Destination Folder", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -171,6 +166,7 @@ Use the 'Browse' button to choose a location to save the files and try again.", 
             // is destintation folder valid?
             if (!directoryExists(destinationFolderText.Text))
             {
+                Program.Log.Warn("Destination folder did not exist.");
                 MessageBox.Show(@"That destination folder does not exist. You must choose a valid destination folder.
 
 Use the 'Browse' button to choose a valid location to save the files and try again.", "No Destination Folder", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -182,22 +178,23 @@ Use the 'Browse' button to choose a valid location to save the files and try aga
             foreach(string filename in sourceList.Items)
             {
                 if (!fileExists(filename))                {
-                    MessageBox.Show(@"The source file '" + filename + @"' can no longer be found. Has it been moved or deleted?
-
-Please remove it from the list, add it again if necessary and try again.", "File Has Gone", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Program.Log.Warn($"Source file {filename} can no longer be found.");
+                    MessageBox.Show($"The source file '{filename}' can no longer be found. Has it been moved or deleted?\n\nPlease remove it from the list, add it again if necessary and try again.", "File Has Gone", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
                 }
             }
 
             if (checkDirForTTF(destinationFolderText.Text))
             {
+                Program.Log.Warn("Files exist in destination folder already. Asking user");
                 if (MessageBox.Show(@"There are fonts already in your destination folder.
 
 If the extracted TTF files have the same names as these existing fonts, they may be overwritten.
 
-Do you want to overwrite any original files?", "Overwrite Originals", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+Do you want to overwrite any original files?", "Overwrite Originals", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) { 
                     return;
-                
+                }
+                Program.Log.Info("User is authorising overwriting.");
             }
 
             progress.Visible = true;
@@ -211,18 +208,29 @@ Do you want to overwrite any original files?", "Overwrite Originals", MessageBox
         private void fonduWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             // ****** CALLING FONDU **********
+            Program.Log.Info("Fondu worker starting");
 
             // we must loop through and do a fondu for each item in the source list
 
             string tempPath = Path.Combine(Path.GetTempPath(), "dfontsplitter-" + Process.GetCurrentProcess().Id);
+            Directory.CreateDirectory(tempPath);
+            Program.Log.Debug($"Temp path for this run: {tempPath}");
 
             foreach (string filename in sourceList.Items)
             {
-                string thisFileTempPath = tempPath + "-" + Path.GetFileNameWithoutExtension(filename);
+                string thisFileTempPath = Path.Combine(tempPath, Path.GetFileNameWithoutExtension(filename));
                 Directory.CreateDirectory(thisFileTempPath);
                 Directory.SetCurrentDirectory(thisFileTempPath);
-                
-                FonduWrapper.fondu_simple_main(filename);
+                Program.Log.Debug($"Temp path for this file: {thisFileTempPath} for file {Path.GetFileNameWithoutExtension(filename)}");
+
+                Program.Log.Info($"fondu_simple_main(\"{filename}\")");
+                int result = FonduWrapper.fondu_simple_main(filename);
+                Program.Log.Debug($"fondu returned  {result}");
+
+                if (result != 1)
+                {
+                    Program.Log.Warn($"fondu returned an unexpected result of {result}");
+                }
 
                 // copy results to destination folder
                 foreach(string file in Directory.GetFiles(Directory.GetCurrentDirectory()))
@@ -230,17 +238,18 @@ Do you want to overwrite any original files?", "Overwrite Originals", MessageBox
                     string normalisedFilePath = "";
                     int exitCode = -1;
                     // normalise all TTFs
-                    if (file.EndsWith(".ttf"))
+                    if (file.EndsWith(".ttf") || file.EndsWith(".otf"))
                     {
-                        
                         try
                         {
+                            Program.Log.Info($"FontForgeWrapper with {Path.GetFileName(file)} and {Directory.GetCurrentDirectory()}");
                             exitCode = FontForgeWrapper.NormaliseTTF(Path.GetFileName(file), Directory.GetCurrentDirectory(), out normalisedFilePath);
+                            Program.Log.Info($"Exit code was {exitCode}");
                         }
                         catch (Exception ex)
                         {
-                            Debug.WriteLine(ex.ToString());
-                            //TODO handle this 
+                            Program.Log.Error($"{ex.GetType()} Exception encountered calling the FontForgeWrapper");
+                            Program.Log.Error(ex.ToString());
                         }
                     }
 
@@ -248,27 +257,36 @@ Do you want to overwrite any original files?", "Overwrite Originals", MessageBox
                     if (normalisedFilePath.Length > 0 && exitCode == 0)
                     {
                         pathToUse = normalisedFilePath;
+                        Program.Log.Debug($"Using normalised file path {pathToUse}");
                     }
 
+                    Program.Log.Debug($"Copy {pathToUse} to destination {Path.Combine(destinationFolderText.Text, Path.GetFileName(file))}");
                     File.Copy(pathToUse, Path.Combine(destinationFolderText.Text, Path.GetFileName(file)), true);
                 }
                
 
                 Directory.SetCurrentDirectory(Path.GetTempPath());
 
+                Program.Log.Debug($"Cleanup {thisFileTempPath}");
                 foreach(string file in Directory.GetFiles(thisFileTempPath))
                 {
-                    //TODO still holding a handle open??
-                    //File.Delete(file);
+                    File.Delete(file);
                 }
-                //Directory.Delete(thisFileTempPath);
+                Directory.Delete(thisFileTempPath);
             }
+            
+            Directory.SetCurrentDirectory(Path.GetTempPath());
 
+            // delete containing temp dir
+            Program.Log.Debug($"Cleanup overall temp path {tempPath}");
+            Directory.Delete(tempPath, true);
             
         }
 
         private void fonduWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+
+            Program.Log.Info("Fondu worker completed");
 
             // put the UI back how we found it
             progress.Visible = false;
@@ -279,7 +297,7 @@ Do you want to overwrite any original files?", "Overwrite Originals", MessageBox
             // all tied up, so throw Explorer if desired
 
 
-            if (shouldSpawnExplorer == true) { 
+            if (shouldSpawnExplorer) { 
                 Process.Start(destinationFolderText.Text); // spawn Explorer window
             }
 
@@ -299,10 +317,9 @@ Do you want to overwrite any original files?", "Overwrite Originals", MessageBox
 
             foreach (FileInfo file in fileList)
             {
-
-                if (file.Extension == ".ttf" || file.Extension == ".bdf")
+                if (file.Extension == ".ttf" || file.Extension == ".bdf" || file.Extension == ".otf") { 
                     return true;
-
+                }
             }
 
             return false;           

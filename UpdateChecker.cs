@@ -25,6 +25,7 @@ using System.Net;
 using System.Configuration;
 using System.ComponentModel;
 using System.Xml;
+using System.Management;
 
 namespace DfontSplitter
 {
@@ -138,9 +139,28 @@ namespace DfontSplitter
 
             System.OperatingSystem osInfo = System.Environment.OSVersion;
 
+            string osCaption = "";
+            string osVersion = "";
+            string osNativeArch = "";
+
+            try { 
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem");
+                foreach(ManagementObject managementObject in searcher.Get())
+                {
+                    osCaption = (string)managementObject.GetPropertyValue("Caption");
+                    osVersion = (string)managementObject.GetPropertyValue("Version");
+                    osNativeArch = (string)managementObject.GetPropertyValue("OSArchitecture");
+                }
+            }
+            catch (Exception e)
+            {
+                Program.Log.Error($"Unable to get OS version from WMI: {e}");
+            }
+
+
             wc = new WebClient();
             // add user agent
-            wc.Headers.Add("User-Agent", "DfontSplitter/" + appVersion.ToString() + "; " + osInfo.Platform.ToString() + "; Windows/" + osInfo.Version.ToString() + "; Update-Checker");
+            wc.Headers.Add("User-Agent", $"DfontSplitter/{appVersion}; {osInfo.Platform}; Windows/{osInfo}; {osCaption} ; {osVersion} ; {osNativeArch} ; Update-Checker");
             //wc.DownloadStringCompleted += (object sender, DownloadStringCompletedEventArgs e) => compareUpdateVersions(userInitiated, e);
             // no longer run download async, as the whole updatechecker is run async
             try
@@ -151,15 +171,17 @@ namespace DfontSplitter
             }
             catch (WebException we)
             {
-                Console.WriteLine(@"Unable to check for updates. Error Type: " + we.Status.ToString() + ", Message: '" + we.Message + "'");
+                Program.Log.Error($"Unable to check for updates. Error Type: {we.Status}, Message: '{we.Message}'");
             }
             catch (XmlException xe)
             {
-                Console.WriteLine(@"Unable to check for updates. The XML data from the update server is malformed, or is not XML data.");
+                Program.Log.Error("Unable to check for updates. The XML data from the update server is malformed, or is not XML data");
+                Program.Log.Error($"{xe}");
             }
             catch (Exception e)
             {
-                Console.WriteLine(@"Unable to download or parse update check XML file. There could be a network issue, or invalid data from the server.");
+                Program.Log.Error("Unable to download or parse update check XML file. There could be a network issue, or invalid data from the server.");
+                Program.Log.Error($"{e}");
             }
 
         }
@@ -207,7 +229,7 @@ namespace DfontSplitter
                     {
                         case 0:
                             // same version
-                            Console.WriteLine(@"The application is up-to-date.");
+                            Program.Log.Info("The application is up-to-date.");
                            
                             if (userInitiated)
                             {   
@@ -220,7 +242,7 @@ namespace DfontSplitter
                         case 1:
 
                             // current version is later than available
-                            Console.WriteLine(@"The application is up-to-date.");
+                            Program.Log.Info("The application is up-to-date.");
 
                             if (userInitiated)
                             {
@@ -231,9 +253,9 @@ namespace DfontSplitter
 
 
                         case -1:
-                            
-                            // current version needs updating
-                            Console.WriteLine(@"New update " + newVersionForCompare + " is available.");
+
+                        // current version needs updating
+                        Program.Log.Info($"New update {newVersionForCompare} is available.");
                             
                             
                             //MessageBox.Show(@"An update " + newVersionForCompare + " is available. Let's go to the site.", @"Software Update", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);

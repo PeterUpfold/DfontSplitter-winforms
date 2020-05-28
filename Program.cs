@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace DfontSplitter
@@ -35,5 +36,11 @@ namespace DfontSplitter
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main());
         }
+
+        /// <summary>
+        /// Reference to logger
+        /// </summary>
+        internal static readonly log4net.ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
     }
 }
