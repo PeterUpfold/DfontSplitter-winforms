@@ -4,7 +4,6 @@ This policy applies to DfontSplitter for Windows only.
 
 ## Supported Versions
 
-
 | Version | Supported          |
 | ------- | ------------------ |
 | 0.4     | :white_check_mark: |
