@@ -263,6 +263,7 @@ Do you want to overwrite any original files?", "Overwrite Originals", MessageBox
 
                     Program.Log.Debug($"Copy {pathToUse} to destination {Path.Combine(destinationFolderText.Text, Path.GetFileName(file))}");
                     File.Copy(pathToUse, Path.Combine(destinationFolderText.Text, Path.GetFileName(file)), true);
+                    File.Delete(pathToUse);
                 }
                
 

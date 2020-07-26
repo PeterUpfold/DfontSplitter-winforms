@@ -33,3 +33,7 @@ msbuild.wrn
 .vs/
 
 Backup/
+
+# DfontSplitter specific
+BuildTools/*.exe
+ExternalTools/
