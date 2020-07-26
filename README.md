@@ -6,6 +6,8 @@ Please note you should only perform this process on fonts that you have the righ
 
 **If you just want to _use_ this program, download the installer from [https://peter.upfold.org.uk/projects/dfontsplitter](https://peter.upfold.org.uk/projects/dfontsplitter)**. This repository contains the source code for developer use.
 
+[![DfontSplitter screenshot](https://raw.githubusercontent.com/PeterUpfold/DfontSplitter-winforms/main/dfontsplitter_screenshot.png)](https://peter.upfold.org.uk/projects/dfontsplitter)
+
 ## About
 
 DfontSplitter is a graphical wrapper around the command line tool [Fondu](https://fondu.sourceforge.net) (a modified [fondu-win-dll](https://github.com/peterupfold/fondu-win-dll) is used in DfontSplitter) and also [FontForge](https://sourceforge.net/projects/fontforgebuilds). These tools support its font conversion functionality.
