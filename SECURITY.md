@@ -2,7 +2,7 @@
 
 This policy applies to DfontSplitter for Windows only.
 
-## Supported Versions
+## Supported Versions
 
 | Version | Supported          |
 | ------- | ------------------ |
