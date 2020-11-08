@@ -42,9 +42,9 @@
             this.imageWell = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.gbxFontforge = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.fontforgeBuild = new System.Windows.Forms.Label();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.label5 = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Button();
             this.getSource = new System.Windows.Forms.Button();
             this.gbxIcon.SuspendLayout();
@@ -168,9 +168,9 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(442, 171);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(149, 13);
+            this.label7.Size = new System.Drawing.Size(160, 13);
             this.label7.TabIndex = 16;
-            this.label7.Text = "Version: 0.4 for Windows";
+            this.label7.Text = "Version: 0.4.1 for Windows";
             // 
             // gbxFontforge
             // 
@@ -184,15 +184,16 @@
             this.gbxFontforge.TabStop = false;
             this.gbxFontforge.Text = "FontForge";
             // 
-            // label5
+            // fontforgeBuild
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(328, 39);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "DfontSplitter uses FontForge to produce Windows-compatible\r\nTTF files. The FontFo" +
-    "rge distribution is licensed under the GNU GPL\r\nv3 as above.";
+            this.fontforgeBuild.AutoSize = true;
+            this.fontforgeBuild.Location = new System.Drawing.Point(6, 99);
+            this.fontforgeBuild.Name = "fontforgeBuild";
+            this.fontforgeBuild.Size = new System.Drawing.Size(323, 52);
+            this.fontforgeBuild.TabIndex = 5;
+            this.fontforgeBuild.Text = "FontForge Windows build (32-bit)\r\nMon, Apr  6, 2020 11:04:29 AM +0000\r\ne5275eb60f" +
+    "a1c2de76157cf8c0ccc89909f4ce69 [HEAD]\r\nBased on master: 1cd85a0e621352f81aca07bf" +
+    "9eb42467ee078f38\r\n";
             // 
             // linkLabel2
             // 
@@ -204,16 +205,15 @@
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "https://sourceforge.net/projects/fontforgebuilds/";
             // 
-            // fontforgeBuild
+            // label5
             // 
-            this.fontforgeBuild.AutoSize = true;
-            this.fontforgeBuild.Location = new System.Drawing.Point(6, 99);
-            this.fontforgeBuild.Name = "fontforgeBuild";
-            this.fontforgeBuild.Size = new System.Drawing.Size(323, 52);
-            this.fontforgeBuild.TabIndex = 5;
-            this.fontforgeBuild.Text = "FontForge Windows build (32-bit)\r\nMon, Apr  6, 2020 11:04:29 AM +0000\r\ne5275eb60f" +
-    "a1c2de76157cf8c0ccc89909f4ce69 [HEAD]\r\nBased on master: 1cd85a0e621352f81aca07bf" +
-    "9eb42467ee078f38\r\n";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(328, 39);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "DfontSplitter uses FontForge to produce Windows-compatible\r\nTTF files. The FontFo" +
+    "rge distribution is licensed under the GNU GPL\r\nv3 as above.";
             // 
             // closeButton
             // 

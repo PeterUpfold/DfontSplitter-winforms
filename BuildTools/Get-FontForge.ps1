@@ -9,7 +9,8 @@ if (-not (Get-ChildItem "..\ExternalTools")) {
 
 if (-not (Get-ChildItem "..\ExternalTools\fontforge")) {
 
-    Invoke-WebRequest "https://netcologne.dl.sourceforge.net/project/fontforgebuilds/i686/Portable/FontForge-mingw-w64-i686-e5275e-r1.7z" -OutFile ..\ExternalTools\fontforge.7z
+    #https://sourceforge.net/projects/fontforgebuilds/files/i686/Portable/FontForge-mingw-w64-i686-f8bbd6-r1.7z
+    Invoke-WebRequest "https://netcologne.dl.sourceforge.net/project/fontforgebuilds/i686/Portable/FontForge-mingw-w64-i686-f8bbd6-r1.7z" -OutFile ..\ExternalTools\fontforge.7z
 
     cd ..\ExternalTools\
     New-Item -ItemType Directory -Path fontforge
