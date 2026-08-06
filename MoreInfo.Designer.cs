@@ -170,7 +170,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(160, 13);
             this.label7.TabIndex = 16;
-            this.label7.Text = "Version: 0.4.1 for Windows";
+            this.label7.Text = "Version: 0.4.2 for Windows";
             // 
             // gbxFontforge
             // 
@@ -189,11 +189,11 @@
             this.fontforgeBuild.AutoSize = true;
             this.fontforgeBuild.Location = new System.Drawing.Point(6, 99);
             this.fontforgeBuild.Name = "fontforgeBuild";
-            this.fontforgeBuild.Size = new System.Drawing.Size(323, 52);
+            this.fontforgeBuild.Size = new System.Drawing.Size(326, 52);
             this.fontforgeBuild.TabIndex = 5;
-            this.fontforgeBuild.Text = "FontForge Windows build (32-bit)\r\nMon, Apr  6, 2020 11:04:29 AM +0000\r\ne5275eb60f" +
-    "a1c2de76157cf8c0ccc89909f4ce69 [HEAD]\r\nBased on master: 1cd85a0e621352f81aca07bf" +
-    "9eb42467ee078f38\r\n";
+            this.fontforgeBuild.Text = "FontForge Windows build (32-bit)\r\nSat, Nov  7, 2020  9:20:55 PM +0000\r\nf8bbd68cb2" +
+    "9e31eba3215894ae4124a8ecdc2033 [HEAD]\r\nBased on master: 21ad4a18fb3d4becfe566d82" +
+    "15eba4483b0ddc4b";
             // 
             // linkLabel2
             // 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DfontSplitter
 {
-    class FontForgeWrapper
+    public class FontForgeWrapper
     {
 
         //fontforge.exe -c 'open(argv[1]).generate(argv[2])' Courier.ttf Courier_win.ttf
@@ -26,7 +26,10 @@ namespace DfontSplitter
         /// <returns>The exit code of fontforge.exe</returns>
         public static int NormaliseTTF(string filename, string containingTempFolder, out string normalisedFilePath)
         {
-            string fontForgePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ExternalTools", "fontforge", "bin", "fontforge.exe");
+            Uri codeBase = new Uri(Assembly.GetExecutingAssembly().CodeBase);
+            string codeBasePath = Path.GetDirectoryName(Uri.UnescapeDataString(codeBase.AbsolutePath));
+
+            string fontForgePath = Path.Combine(codeBasePath, "ExternalTools", "fontforge", "bin", "fontforge.exe");
 
             if (!File.Exists(fontForgePath))
             {

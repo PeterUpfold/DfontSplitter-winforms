@@ -51,6 +51,9 @@ namespace DfontSplitter
             isNewUpdate = false;
             sets = new UserSettings();
 
+            
+            sets.Upgrade();
+
             if (shouldCheckVersion()) {
 
                 checkForUpdate(UPDATE_CHECKER_AUTOMATIC);
@@ -66,7 +69,9 @@ namespace DfontSplitter
             appVersion = new Version(Application.ProductVersion);
             isNewUpdate = false;
             sets = new UserSettings();
-            
+
+            sets.Upgrade();
+
             checkForUpdate(userInitiated);
 
  

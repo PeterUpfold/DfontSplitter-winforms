@@ -40,3 +40,14 @@ To set up a development environment to build this project, you will need to:
  Some paths in `DfontSplitter.iss` will need updating with the root of your project -- `OutputDir`, `SourceDir`, `InfoBeforeFile`. _TODO can these be relative paths so this step can be avoided?_
 
  If you redistribute a modified version of DfontSplitter, please prominently label that the project is modified, or use a different project name entirely. This will help to avoid user confusion. Thank you.
+
+### Bumping FontForge/new release build notes
+
+ * Update Assembly version
+ * Update version number in `MoreInfo.cs` for both DfontSplitter and the FontForge build information.
+ * Update `readme.rtf` (Inno Setup pre-shown information)
+ * Run `Get-FontForge.ps1`
+ * Perform a release build.
+ * Run `Get-FontForgeISSEntries.ps1` and replace the entries in `DfontSplitter.iss`.
+ * Update version number and exe name in `DfontSplitter.iss`
+ * Build in Inno Setup.

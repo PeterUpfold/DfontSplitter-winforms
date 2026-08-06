@@ -1,0 +1,1 @@
+Get-FileHash -Algorithm sha256 ..\ExternalTools\fontforge.exe
